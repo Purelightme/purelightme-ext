@@ -1,0 +1,7 @@
+ARG_ENABLE('purelightme', 'purelightme support', 'no');
+
+if (PHP_PURELIGHTME != 'no') {
+	AC_DEFINE('HAVE_PURELIGHTME', 1, 'purelightme support enabled');
+
+	EXTENSION('purelightme', 'purelightme.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+}
