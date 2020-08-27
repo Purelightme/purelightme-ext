@@ -30,3 +30,15 @@ PHP_FUNCTION(hello)
     ZEND_PARSE_PARAMETERS_END();
     php_printf("name: %s,len: %d",ZSTR_VAL(name),ZSTR_LEN(name));
 }
+
+PHP_FUNCTION(internal_str)
+{
+    zend_string *foo,*bar;
+    foo = zend_string_init("foo", strlen("foo"),0);
+    bar = zend_string_copy(foo);
+    php_printf("foo refcount: %d",foo->gc.refcount); //应该是2
+    foo = zend_new_interned_string(foo);
+    php_printf("bar refcount: %d", bar->gc.refcount); //应该是1,Interned 字符串总是将 refcount 设为一
+    zend_string_release(foo);
+    zend_string_release(bar);
+}

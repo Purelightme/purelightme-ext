@@ -135,6 +135,7 @@ static const zend_function_entry purelightme_functions[] = {
 	PHP_FE(now,NULL)
 	PHP_FE(ptest,NULL)
 	PHP_FE(hello,NULL)
+	PHP_FE(internal_str,NULL)
 	PHP_FE(rnd_guess,NULL)
 	PHP_FE(rnd_reset,NULL)
 	PHP_FE(smart_str_test,NULL)

@@ -33,4 +33,6 @@
 // $res = pure_write($fp,"测试文本,hello");
 // var_dump($res);
 
-var_dump(hello('purelightme'));
+// var_dump(hello('purelightme'));
+
+internal_str();
