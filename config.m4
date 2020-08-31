@@ -92,3 +92,6 @@ if test "$PHP_PURELIGHTME" != "no"; then
 
   PHP_NEW_EXTENSION(purelightme, purelightme.c, $ext_shared)
 fi
+
+PHP_ADD_LIBRARY_WITH_PATH(hello, /usr/local/lib/, PURELIGHTME_SHARED_LIBADD)
+PHP_SUBST(PURELIGHTME_SHARED_LIBADD)

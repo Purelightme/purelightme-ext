@@ -35,4 +35,24 @@
 
 // var_dump(hello('purelightme'));
 
-internal_str();
+// internal_str();
+
+$demo = new Demo();
+$demo->name = '张三';
+$demo->age = 25;
+$demo->setName('李四');
+var_dump($demo->name);
+var_dump($demo->age);
+var_dump($demo->display());
+$child = new Child();
+$child->setName('哈哈测试34');
+var_dump($child->getName());
+//$child->age = 18;
+//var_dump($child->age);
+//var_dump($child->getName());
+
+//var_dump(show_site());
+
+//server();
+
+// echo PURELIGHTME_JOB;

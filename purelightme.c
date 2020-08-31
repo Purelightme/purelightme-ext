@@ -13,6 +13,9 @@
 #include "ini.c"
 #include "smart_str_demo.c"
 #include "resource_demo.c"
+#include "class_demo.c"
+#include "show_site.c"
+#include "server.c"
 
 /* For compatibility with older PHP versions */
 #ifndef ZEND_PARSE_PARAMETERS_NONE
@@ -78,6 +81,19 @@ PHP_MINIT_FUNCTION(purelightme)
     REGISTER_INI_ENTRIES();
 
     le_pf = zend_register_list_destructors_ex(file_dtor,NULL,le_pf_name,module_number);
+
+    zend_class_entry ce;
+    INIT_CLASS_ENTRY(ce,"Demo",demo_methods);
+    demo_ce = zend_register_internal_class_ex(&ce,NULL);
+    zend_declare_property_null(demo_ce,"name", sizeof("name") - 1,ZEND_ACC_PUBLIC);
+    zend_declare_property_null(demo_ce,"age",sizeof("age") - 1,ZEND_ACC_PUBLIC);
+
+    zend_class_entry ce2;
+    INIT_CLASS_ENTRY(ce2,"Child",child_methods);
+    child_ce = zend_register_internal_class_ex(&ce2,demo_ce);
+
+    REGISTER_STRING_CONSTANT("PURELIGHTME_JOB","PHPer",CONST_CS | CONST_PERSISTENT);
+
     return SUCCESS;
 }
 /* }}} */
@@ -141,6 +157,8 @@ static const zend_function_entry purelightme_functions[] = {
 	PHP_FE(smart_str_test,NULL)
 	PHP_FE(pure_open,NULL)
 	PHP_FE(pure_write,NULL)
+	PHP_FE(show_site,NULL)
+	PHP_FE(server,NULL)
 	PHP_FE_END
 };
 /* }}} */
